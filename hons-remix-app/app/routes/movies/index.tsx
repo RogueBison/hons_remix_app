@@ -9,7 +9,7 @@ import { json } from "@remix-run/node";
 export async function loader() {
 
   let db = await mongodb.db("hons_load_test");
-  let collection = await db.collection("film");
+  let collection = await db.collection("filmsRemix");
   let movies = await collection.find({}).toArray();
 
   return json({movies});
@@ -24,24 +24,26 @@ export default function Movies() {
       <hr></hr>
       <br></br>
       <h2>Insert or Delete Film Records:</h2>
-      <br />
+      <h3>Test 1</h3>
       <ul>
-      {[10, 100, 500, 1000, 10000].map((quantity) => (
+        <li>
+          <Link to='/movies/insert1'>
+            Insert 1 record
+          </Link>
+        </li>
+      </ul>
+      <h3>Test 2</h3>
+      <ul>
+      {[10, 100, 500, 1000, 2500, 5000, 10000].map((quantity) => (
         <li key={quantity}>
-          <Link to={'/movies/insert${quantity}'}>
+          <Link to={`/movies/insert${quantity}`}>
             Insert {quantity} records
           </Link>
         </li>
       ))}
     </ul>
-      <br/>
-      <br />
-      <DeleteBtn />
-
-      <br></br>
-      <br></br>
-
       <h3>Amount of Records: {movies.length}</h3>
+      <DeleteBtn />
     </div>
   );
 }
