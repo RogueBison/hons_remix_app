@@ -1,10 +1,8 @@
 import { mongodb } from "~/utils/db.server";
-import { Link, useLoaderData } from "@remix-run/react";
-/* import InsertBtn from "~/components/InsertBtn"; */
+import { useLoaderData } from "@remix-run/react";
 import DeleteBtn from "~/components/DeleteBtn";
-import type { Movie } from "~/utils/types.server";
-import MovieTR from "~/components/movie";
 import { json } from "@remix-run/node";
+import InsertBtn from "~/components/InsertBtn";
 
 export async function loader() {
 
@@ -24,24 +22,7 @@ export default function Movies() {
       <hr></hr>
       <br></br>
       <h2>Insert or Delete Film Records:</h2>
-      <h3>Test 1</h3>
-      <ul>
-        <li>
-          <Link to='/movies/insert1'>
-            Insert 1 record
-          </Link>
-        </li>
-      </ul>
-      <h3>Test 2</h3>
-      <ul>
-      {[10, 100, 500, 1000, 2500, 5000, 10000].map((quantity) => (
-        <li key={quantity}>
-          <Link to={`/movies/insert${quantity}`}>
-            Insert {quantity} records
-          </Link>
-        </li>
-      ))}
-    </ul>
+      <InsertBtn />
       <h3>Amount of Records: {movies.length}</h3>
       <DeleteBtn />
     </div>
